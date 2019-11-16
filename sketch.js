@@ -58,24 +58,24 @@ function randomize(update) {
   else if(getFrameRate() > 33 && minDiam  > 5)
     minDiam--;
 
-    println(`NEWFACTOR:${newFactor}`);
-    println(`NWESPIN:${newSpin}`);
+    print(`NEWFACTOR:${newFactor}`);
+    print(`NWESPIN:${newSpin}`);
   } else {
     var split = (frameCount%splitr) / splitr;
     var lf = lastFactor * (1-split);
     var nf = newFactor * split;
-    //println(`lf: ${lf}, nf: ${nf}`);
+    //print(`lf: ${lf}, nf: ${nf}`);
     factor = lf + nf;//lastFactor * (1-split) + newFactor * split;
     spin = lastSpin * (1-split) + newSpin * split;
 
     //minDiam = minDiam * (1-split) + newDiam * split;
-  //println(`split:${(split)} : ${frameCount%splitr}`);
+  //print(`split:${(split)} : ${frameCount%splitr}`);
   }  
 
-  //println(`factor:${factor}`);
-  //println(`spin:${spin}`);
-  //println(minDiam);
-  //println(opq);
+  //print(`factor:${factor}`);
+  //print(`spin:${spin}`);
+  //print(minDiam);
+  //print(opq);
 }
 
 function resize() {
@@ -93,12 +93,12 @@ function update() {
 }
 
 function draw() {
-  //println(frameCount);
+  //print(frameCount);
   if (frameCount % 60 == 0) background(22, 0, 0, opq);
   if (random(1) > .5) background(22, 0, 0, max(2, floor(opq / 3)));
   if (width != windowWidth || height != windowHeight)
     resize();
-  //println(getFrameRate());
+  //print(getFrameRate());
 
   var cx = width / 2;
   var cy = height / 2;
@@ -127,14 +127,14 @@ function draw() {
 }
 
 function mouseClicked() {
-  println("clickd");
+  print("clickd");
   loop();
 }
 
 function drawStrand(depth, cx, cy, diam, angle) {
   if (depth < 1) return;
   var drat = 1 - min(1,pow(diam, 1 / depth));
-  //println("depth: " + depth + ", drat: " + drat);
+  //print("depth: " + depth + ", drat: " + drat);
   stroke(255 - 255 * drat, 255 - 255 * drat, 255, 255 * drat);
   //line(0, 0, cx, cy);
   point(0,0);
@@ -165,7 +165,7 @@ function drawTri(cx, cy, diam, angle) {
   //stroke(t)
   //stroke(_red);
   if (diam < min(width / 4, height / 4)) {
-    //println(r);
+    //print(r);
     stroke(255, 63 + 192 * min(1, abs(1 - minDiam / diam)), 0, opq);
     if (drawLines)
       line(0, 0, xf, yf);
